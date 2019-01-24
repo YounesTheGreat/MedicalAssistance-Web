@@ -24,7 +24,7 @@ module.exports = function dashboardMedecin(req, res, next) {
             const rendezVous = results;
   
             /* Afficher Page */
-            console.log(medecin, patients, rendezVous);
+            //console.log(medecin, patients, rendezVous);
             res.render("index", { medecin, patients, rendezVous });
           });
         });

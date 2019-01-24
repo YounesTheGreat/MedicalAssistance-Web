@@ -13,7 +13,7 @@ let app = express();
 app.set('views', path.join(__dirname, 'views'));
 
 /* Customize View Engine -- Handlebars */
-const hbs = require("hbs");
+const hbs = require("./viewEngine");
 app.set('view engine', 'html');
 app.engine('html', hbs.__express);
 hbs.registerPartials(__dirname + '/views/partials');

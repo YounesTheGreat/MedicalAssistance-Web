@@ -1,3 +1,4 @@
+{{#if medecin }}
 <div class="card border-dark">
     <div class="card-header border-dark ">
             Informations Médecin
@@ -12,9 +13,9 @@
         <div class="text-center mt-0 pt-0">  
             <img src="images/doctor_avatar.png" alt="John Doe" class="mr-3 mt-3 rounded" style="width:120px;">
         </div> 
-        <h1 class="mt-2 h4 text-center">BAHOUM Badr Eddine</h1>        
+        <h1 class="mt-2 h4 text-center"><span class="text-uppercase">{{medecin.nom}}</span> {{medecin.prenom}}</h1>        
 
-        <h2 class="h6 text-center">N°3 Rue Savoie des Hopitaux, CASABLANCA.</h2>
+        <h2 class="h6 text-center">{{medecin.adresse}}</h2>
 
         <hr>
         <div class="contained-fluid">
@@ -35,25 +36,26 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">@ Email</span>
             </div>
-            <label type="text" class="form-control"> badrbahoum@gmail.com</label>
+            <label type="text" class="form-control">{{ medecin.email }}</label>
         </div> 
         <div class="input-group mb-2">
             <div class="input-group-prepend">
                 <span class="input-group-text">Téléphone</span>
             </div>
-            <label class="form-control">(+212) 661264455</label>
+            <label class="form-control">{{ medecin.telephone }}</label>
         </div>
         <div class="input-group mb-2">
             <div class="input-group-prepend">
                 <span class="input-group-text">Spécialité</span>
             </div>
-            <label type="text" class="form-control">Chirurgien Cardiologue</label>
+            <label type="text" class="form-control">{{ medecin.specialite }}</label>
         </div>
         <div class="input-group mb-2">
             <div class="input-group-prepend">
                 <span class="input-group-text">Date de naissance</span>
             </div>
-            <label type="text" class="form-control">25/10/1996</label>
+            <label type="text" class="form-control">{{dateFormat medecin.dateNaissance 'DD/MM/YYYY'}}</label>
         </div>
     </div>
 </div>
+{{/if }}

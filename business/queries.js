@@ -1,6 +1,8 @@
 
 const SELECT_MEDECIN = `
-SELECT id_medecin as id, nom, prenom, mail, telephone, specialite, adresse, description
+SELECT id_medecin AS id, nom, prenom, mail AS email, 
+  telephone, specialite, adresse, description,
+  date_naissance AS dateNaissance
 FROM medecin
 WHERE id_medecin = ?
 `;

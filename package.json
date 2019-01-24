@@ -11,6 +11,8 @@
     "express": "~4.16.0",
     "express-catch-async": "^1.0.3",
     "express-myconnection": "^1.0.4",
+    "handlebars-cond": "^1.0.3",
+    "handlebars-dateformat": "^1.1.1",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
