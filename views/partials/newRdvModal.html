@@ -1,0 +1,50 @@
+<!-- New Patient -->
+<div class="modal" id="newRdvModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header bg-light">
+                    <h4 class="modal-title h6">Organiser un RDV </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+    
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form action="/rendezvous" method="POST">
+                        <div class="input-group mb-2"> 
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Patient</span>
+                            </div>                  
+                            <select name="idPatient" class="form-control">
+                                {{#each patients}}
+                                    <option value="{{id}}"><span class="text-uppercase">{{nom}}</span> {{prenom}}</option>
+                                {{/each}}                        
+                            </select>                        
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Sujet</span>
+                            </div>     
+                            <input name="sujet" type="text" class="form-control" placeholder="Sujet du RDV.." />
+                        </div> 
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Date</span>                                
+                            </div>
+                            <input type="date" name="date" class="form-control" />
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <spa class="input-group-text">
+                                    Heure
+                                </span>
+                            </div>
+                            <input type="time" name="heure" class="form-control" />
+                        </div>
+                        <button class="btn btn-dark btn-block mt-3">Ajouter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+          

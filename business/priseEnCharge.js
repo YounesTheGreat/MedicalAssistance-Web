@@ -21,8 +21,11 @@ function ajouterRendezVous(req, res, next){
     req.getConnection(function (err, connection) {    
         if (err) return next(err);    
         const idMedecin = 3; // TODO
-        const { idPatient, sujet, dateHeure } = req.body
+        const { idPatient, sujet, date, heure } = req.body
 
+        console.log("Date et heure", date, heure);
+        let dateHeure = date + ' ' + heure;
+        
         /* RDV entre Medecin et Patient */
         connection.query(INSERT_RENDEZVOUS_MEDECIN, [idMedecin, idPatient, sujet, dateHeure], function (err) {
             if (err) return next(err);

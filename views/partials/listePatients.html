@@ -26,7 +26,13 @@
                         </td>
                         <td>{{ nom }}</td>
                         <td>{{ prenom }}</td> 
-                        <td><button class="btn btn-sm btn-outline-dark"><i class="far fa-eye"></i></button></td>
+                        <td>
+                            <button id="showPatient{{id}}" class="btn btn-sm btn-outline-dark"
+                            target="popup" 
+                            onclick="window.open('patients/{{id}}','popup','width=400,height=400, top=100, location=0 left=100'); return false;">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </td>
                     </tr>
                     {{/each}}                                                                                             
                 </tbody>
@@ -34,3 +40,9 @@
         </div>
     </div>
 </div>
+
+<script >
+    function showPatientPopup(element) {
+        element.a
+    }
+</script>

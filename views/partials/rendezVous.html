@@ -2,7 +2,8 @@
     <div class="card-header border-dark">
         Rendez vous
         <span class="float-right">
-            <button class="btn btn-sm btn-dark">
+            <button class="btn btn-sm btn-dark"
+            type="button"data-toggle="modal" data-target="#newRdvModal">
                 <i class="far fa-calendar-plus"></i>
             </button>
         </span>         
@@ -20,7 +21,7 @@
                     {{#each rendezVous}}
                         <tr>
                             <td><span class="text-uppercase">{{nom}}</span> {{prenom}}</td>
-                            <td>{{dateFormat dateHeure 'DD/MM/YYYY à HH:m'}}</td>
+                            <td>{{dateFormat dateHeure 'DD/MM/YYYY à HH:mm'}}</td>
                             <td aria-label="{{sujet}}">
                                 {{substring sujet 0 12}}...
                             </td>

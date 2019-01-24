@@ -9,14 +9,14 @@ module.exports = {
   `,
 
   SELECT_PATIENTS_MEDECIN : `
-  SELECT * FROM patient WHERE id_patient IN (
+  SELECT id_patient AS id, nom, prenom FROM patient WHERE id_patient IN (
     SELECT id_patient FROM liste_medecin_patient
     WHERE id_medecin = ?
   )
   `,
 
   SELECT_RDV_MEDECIN : `
-    SELECT sujet, heure, nom, prenom 
+    SELECT sujet, heure AS dateHeure, nom, prenom 
     FROM rendezvous R, patient P
     WHERE R.id_patient = P.id_patient
     AND R.id_medecin = ?
