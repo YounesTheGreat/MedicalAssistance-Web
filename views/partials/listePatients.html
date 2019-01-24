@@ -1,8 +1,35 @@
-<div class="card">
-    <div class="card-header">
+<div class="card border-dark">
+    <div class="card-header border-dark">
         Patients
+        <span class="float-right">
+            <button class="btn btn-sm btn-dark">
+                <i class="fas fa-user-plus"></i>
+            </button>
+        </span> 
     </div>
     <div class="card-body">
- 
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <th></th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    {{#each patients}}
+                    <tr>
+                        <td>
+                            <img src="images/avatar_person.png" alt="KASRI Younes" 
+                            class="rounded" style="width:30px;">
+                        </td>
+                        <td>KASRI</td>
+                        <td>Younes</td> 
+                        <td><button class="btn btn-sm btn-outline-dark"><i class="far fa-eye"></i></button></td>
+                    </tr>
+                    {{/each}}                                                                                             
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
+</div>   

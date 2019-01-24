@@ -1,8 +1,33 @@
-<div class="card">
-    <div class="card-header">
+<div class="card border-dark">
+    <div class="card-header border-dark">
         Rendez vous
     </div>
     <div class="card-body">
-        
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead> 
+                    <th>Patient</th>
+                    <th>Date et heure</th>
+                    <th>Sujet</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    {{#each rendezVous}}
+                        <tr>
+                            <td>KASRI Younes</td>
+                            <td>24/10/2019 à 14h32</td>
+                            <td aria-label="Visite médicale pour test aptitude  Permis de Conduire">
+                                Visite médicale..
+                            </td>
+                            <td class="btn-group">
+                                <td><button class="btn btn-sm btn-outline-dark"><i class="far fa-eye"></i></button></td>
+                                <!-- <button class="btn btn-outline-dark btn-sm"><i class="fas fa-pencil-alt"></i></button>
+                                <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button> -->
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
