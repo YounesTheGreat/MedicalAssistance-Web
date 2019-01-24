@@ -9,7 +9,7 @@ const forLoop = (from, to, incr, block) => {
 };
 const substringHepler = (passedString, startstring, endstring) => {
   var theString = passedString.substring(startstring, endstring);
-  return new handlebars.SafeString(theString)
+  return new hbs.SafeString(theString)
 };
 hbs.registerHelper('cond', cond);
 hbs.registerHelper('for', forLoop);
