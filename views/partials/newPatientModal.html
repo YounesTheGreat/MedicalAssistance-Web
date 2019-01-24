@@ -1,0 +1,27 @@
+<!-- New Patient -->
+<div class="modal" id="newPatientModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header bg-light">
+                <h4 class="modal-title h6">Selectionner le Patient</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form action="/patients" method="POST">
+                    <div class="input-group">                        
+                        <select name="idPatient" class="form-control">
+                            {{#each listePatients}}
+                                <option value="{{id}}"><span class="text-uppercase">{{nom}}</span> {{prenom}}</option>
+                            {{/each}}                        
+                        </select>                        
+                    </div> 
+                    <button class="btn btn-dark btn-block mt-2">Ajouter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+      
