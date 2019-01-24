@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('./routes/index');
+const indexRouter = require('./routes');
 const usersRouter = require('./routes/users');
 
 let app = express();
@@ -24,6 +24,10 @@ app.use(logger('dev'))
   .use(cookieParser())
   .use(express.static(path.join(__dirname, 'public')));
 
+/** MySQL Connection  */
+app.use(require("./databaseConnection"));
+
+/** Routers */
 app.use('/', indexRouter)
   .use('/users', usersRouter);
 
@@ -43,7 +47,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-const PORT = 3000;
-app.listen(PORT, _ => console.log("The applcation has started on Port", PORT));
+const port = process.env.PORT || 3000;
+app.listen(port, _ => console.log("The applcation has started on Port", port));
+
 
 module.exports = app;

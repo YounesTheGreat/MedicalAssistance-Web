@@ -10,8 +10,11 @@
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "express-catch-async": "^1.0.3",
+    "express-myconnection": "^1.0.4",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "mysql": "^2.16.0",
+    "promise-mysql": "^3.3.1"
   }
 }

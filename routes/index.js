@@ -1,13 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const dashboardMedecin = require("../business/dashboardMedecin");
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  let patients = [1,2,3,4,5,6,7,8];
-  let rendezVous = [1,2,3,4,5]
-  res.render('index', { title: 'Bienvenue !', patients, rendezVous });
-});
-
-
+router.get('/', dashboardMedecin);
 
 module.exports = router;
