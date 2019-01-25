@@ -1,20 +1,22 @@
 const { INSERT_PATIENT_MEDECIN, SELECT_PATIENT, 
     INSERT_RENDEZVOUS_MEDECIN, SELECT_RDV,
-    REMOVE_PATIENT_MEDECIN,
-    DELETE_RENDEZ_VOUS, UPDATE_RENDEZ_VOUS } = require("./queries");
+    REMOVE_PATIENT_MEDECIN, SELECT_PRESCRIPTIONS_PATIENT,
+    DELETE_RENDEZ_VOUS, UPDATE_RENDEZ_VOUS,
+    INSERT_PRESCRIPTION } = require("./queries");
 
 exports.ajouterPatient = (req, res, next) => {
-    /* Singleton connection (see dbOptions) */
-    req.getConnection(function (err, connection) {    
-        if (err) return next(err);    
-        const idMedecin = 3; // TODO
-        const { idPatient } = req.body
+    const { connection } = req;
+    const idMedecin = 3; // TODO
+    const { idPatient } = req.body
 
-        /* Le Medecin prend en charge le Patient*/
-        connection.query(INSERT_PATIENT_MEDECIN, [idMedecin, idPatient], function (err) {
-            if (err) return next(err);            
+    /* Le Medecin prend en charge le Patient*/
+    connection.query(INSERT_PATIENT_MEDECIN, [idMedecin, idPatient], function (err) {
+        if (err) return next(err);   
+        /* Ajout Prescription Implicit. pr ajout Medicaments */
+        connection.query(INSERT_PRESCRIPTION, [idMedecin, idPatient], function(err) {
+            if (err) return next(err);
             res.redirect("/");
-        });
+        });            
     });
 }
 
@@ -40,8 +42,13 @@ exports.ajouterRendezVous = (req, res, next) => {
 exports.afficherPatient = (req, res, next) => {
     selectById(req, SELECT_PATIENT,function (err, results) {
         if (err) return next(err);
-        const patient = results[0];
-        res.render("showPatient", { patient, layout: "popupLayout" });
+        const patient = results[0];        
+        /* Charger les prescriptions */
+        req.connection.query(SELECT_PRESCRIPTIONS_PATIENT, [patient.id], function(err, results) {
+            if (err) return next(err);
+            const prescriptions = results;
+            res.render("showPatient", { patient, prescriptions});
+        });        
     });
 }
 

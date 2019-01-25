@@ -1,59 +1,36 @@
-{{#if patient }}
-<div class="card border-dark">
-    <div class="card-header border-dark ">
-            Informations Patient
-            <span class="float-right">
-                <button class="btn btn-sm btn-dark">
-                        <i class="far fa-edit"></i>
-                </button>
-            </span>      
-    </div>
-    <div class="card-body pt-0">
 
-        <div class="text-center mt-0 pt-0">  
-            <img src="images/avatar_person.png" alt="{{patient.nom}} {{patient.prenom}}" class="mr-3 mt-3 rounded" style="width:120px;">
-        </div> 
-        <h1 class="mt-2 h4 text-center"><span class="text-uppercase">{{patient.nom}}</span> {{medecin.prenom}}</h1>        
-
-       <div class="input-group mb-2">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Adresse</span>
-            </div>
-            <label type="text" class="form-control">{{ patient.adresse }}</label>
-        </div>            
-       <div class="input-group mb-2">
-            <div class="input-group-prepend">
-                <span class="input-group-text">@ Email</span>
-            </div>
-            <label type="text" class="form-control">{{ patient.email }}</label>
-        </div> 
-        <div class="input-group mb-2">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Téléphone</span>
-            </div>
-            <label class="form-control">{{ patient.telephone }}</label>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            {{> infoPatient}}
         </div>
-
-        <hr>
-
-        <div class="input-group mb-2">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Age</span>
-            </div>
-            <label type="text" class="form-control">{{ patient.age }}</label>
+        <div class="col-md-6">
+            <h1 class="h3 text-white-50">Prescriptions</h1>
+            <table class="table">
+                <thead>                    
+                    <th>Nom Medicament</th>
+                    <th>Indications</th>
+                    <th>Prescrit par Dr.</th>
+                    <th>Quantité prise</th>
+                    <th>Info Mutuelle</th>
+                </thead>
+                <tbody>
+                    {{#each prescriptions}}
+                    <tr>
+                        <td>{{nomMedicament}}</td>
+                        <td>{{nomMedecin}} {{prenomMedecin}}</td>
+                        <td>{{indications}}</td>
+                        <td>{{quantitePrise}}</td>
+                        <td>
+                            <button class="btn btn-dark btn-sm">
+                                <i class="fas fa-info"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {{/each }}
+                </tbody>
+            </table>
         </div>
-        <div class="input-group mb-2">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Sexe</span>
-            </div>
-            <label type="text" class="form-control">{{patient.sexe}}</label>
-        </div>
-        <div class="input-group mb-2">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Groupe Sanguin</span>
-            </div>
-            <label type="text" class="form-control">{{ patient.groupeSanguin}}</label>
-        </div>        
     </div>
 </div>
-{{/if }}
+

@@ -1,0 +1,61 @@
+<div class="container-fluid mt-3">
+    <h1>Liste des Médicaments</h1>
+    <hr>
+    <h2 class="text-black-50 mb-3">Rechercher et filtrer</h2>
+    <form action="" class="inline-form">
+        <div class="input-group">
+            <!-- <div class="input-group-prepeng">
+                <span class="input-group-text">Filtrer</span>
+            </div> -->
+            <!-- <input name="CODE" placeholder="Code" type="text" class="form-control"> -->
+            <input name="NOM" value="{{NOM}}" placeholder="Nom médicament" type="text" class="form-control text-info">
+            <input name="DCI1" value="{{DCI1}}" placeholder="DCI" type="text" class="form-control text-info">
+            <input name="DOSAGE1" value="{{DOSAGE1}}" placeholder="Dosage"  type="text" class="form-control text-info">
+            <input name="UNITE_DOSAGE1" value="{{UNITE_DOSAGE1}}" placeholder="Unité de Dosage" type="text" class="form-control text-info">
+            <input name="FORME" value="{{FORME}}" placeholder="Forme" type="text" class="form-control text-info">
+            <input name="PRESENTATION" value="{{PRESENTATION}}" placeholder="Présentation" type="text" class="form-control text-info">
+<!--            <input name="PPV" type="text" class="form-control">
+            <input name="PH" type="text" class="form-control">
+            <input name="PRIX_BR" type="text" class="form-control">
+            <input name="PRINCEPS_GENERIQUE" type="text" class="form-control">
+            <input name="TAUX_REMBOURSEMENT" type="text" class="form-control">
+            -->
+            <button type="submit" class="btn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
+    <div class="">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <!-- <th>Code</th> -->
+                    <th>Nom</th>
+                    <th>DCI</th>
+                    <th>Dosage</th>
+                    <th>Unité Dosage</th>
+                    <th>Forme</th>
+                    <th>Presentation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each medicaments }}
+                    <tr>
+                        <!-- <td>{{CODE}} </td> -->
+                        <td>{{NOM}}</td>
+                        <td>{{DCI1}}</td>
+                        <td>{{DOSAGE1}}</td>
+                        <td>{{UNITE_DOSAGE1}}</td>
+                        <td>{{FORME}}</td>
+                        <td>{{PRESENTATION}}</td>
+                  <!-- <td>{{PPV}}</td>
+                        <td>{{PH}}</td>
+                        <td>{{PRIX_BR}}</td>
+                        <td>{{PRINCEPS_GENERIQUE}}</td>
+                        <td>{{TAUX_REMBOURSEMENT}}</td> -->
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>    
+    </div>
+</div>

@@ -5,6 +5,7 @@ const { ajouterPatient, ajouterRendezVous,
     afficherPatient, afficherRendezVous,
     retirerPatient, annulerRendezVous,
     editRendezVous, updateRendezVous } = require("../business/medecinService");
+const { indexMedicaments } = require("../business/medicamentService");
 
 /* GET home page. */
 router.use(databaseConnection)
@@ -17,6 +18,7 @@ router.use(databaseConnection)
     .get('/rendezvous/:id/delete', annulerRendezVous)
     .get('/rendezvous/:id/edit', editRendezVous)
     .get('/rendezvous/:id', afficherRendezVous)
+    .get('/medicaments', indexMedicaments)
 
 
 function databaseConnection(req, res, next) {

@@ -75,5 +75,35 @@ module.exports = {
       UPDATE rendezvous
       SET sujet=? heure=?
       WHERE id_rendezvous = ?
+  `,
+
+  SELECT_PRESCRIPTIONS_PATIENT : `
+      SELECT nom_medicament AS nomMedicament,
+        dose AS indications,
+        quantite_prise AS quantitePrise,
+        nom AS nomMedecin,
+        prenom AS prenomMedecin
+      FROM medecin M, prescription P, medicament 
+      WHERE M.id_medecin = P.id_medecin
+      AND P.id_prescription = medicament.id_prescription
+      AND P.id_patient = ?
+  `,
+
+  SELECT_PRESCRIPTION : `
+      SELECT id_prescription AS idPrescription
+      FROM prescriptin 
+      WHERE id_medecin = ? AND id_patient = ?
+  `,
+
+  INSERT_PRESCRIPTION : `
+      INSERT INTO prescription VALUES(?,?)
+  `,
+
+  INSERT_MEDICAMENT : `
+    INSERT INTO medicament VALUES(?,?,?)  
+  `,   
+
+  SELECT_MEDICAMENTS_CNOPS : `
+    SELECT * FROM cnops
   `
 }
