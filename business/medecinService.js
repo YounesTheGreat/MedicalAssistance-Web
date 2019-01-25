@@ -1,6 +1,7 @@
 const { INSERT_PATIENT_MEDECIN, SELECT_PATIENT, 
     INSERT_RENDEZVOUS_MEDECIN, SELECT_RDV,
-    REMOVE_PATIENT_MEDECIN } = require("./queries");
+    REMOVE_PATIENT_MEDECIN,
+    DELETE_RENDEZ_VOUS } = require("./queries");
 
 exports.ajouterPatient = (req, res, next) => {
     /* Singleton connection (see dbOptions) */
@@ -72,7 +73,7 @@ exports.retirerPatient = (req, res, next) => {
     });
 }
 
-exports.annulerRendezvous = (req, res, next) => {
+exports.annulerRendezVous = (req, res, next) => {
     const { connection } = req;
     const idRendezVous = req.params.id;
 

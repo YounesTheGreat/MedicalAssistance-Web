@@ -1,8 +1,9 @@
 TODO :
 
-[] Remove Patients From Doctor
+[X] Remove Patients From Doctor
 
-[] Show - Edit - Delete For RDVs
+[X] Show - Delete For RDVs
 
+[] Edit RDV 
 
 PROBLEME: when Remove Patient => all RDVs du medecin ti di3o
