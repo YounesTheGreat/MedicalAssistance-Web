@@ -32,6 +32,9 @@
                             onclick="window.open('patients/{{id}}','popup','width=400,height=400, top=100, location=0 left=100'); return false;">
                                 <i class="far fa-eye"></i>
                             </button>
+                            <a href="/patients/{{id}}/delete" class="btn btn-outline-danger btn-sm">
+                                <i class="fas fa-times"></i>
+                            </a> 
                         </td>
                     </tr>
                     {{/each}}                                                                                             
@@ -40,9 +43,3 @@
         </div>
     </div>
 </div>
-
-<script >
-    function showPatientPopup(element) {
-        element.a
-    }
-</script>

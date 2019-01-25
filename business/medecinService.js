@@ -1,7 +1,8 @@
 const { INSERT_PATIENT_MEDECIN, SELECT_PATIENT, 
-    INSERT_RENDEZVOUS_MEDECIN, SELECT_RDV } = require("./queries");
+    INSERT_RENDEZVOUS_MEDECIN, SELECT_RDV,
+    REMOVE_PATIENT_MEDECIN } = require("./queries");
 
-function ajouterPatient(req, res, next) {
+exports.ajouterPatient = (req, res, next) => {
     /* Singleton connection (see dbOptions) */
     req.getConnection(function (err, connection) {    
         if (err) return next(err);    
@@ -11,13 +12,12 @@ function ajouterPatient(req, res, next) {
         /* Le Medecin prend en charge le Patient*/
         connection.query(INSERT_PATIENT_MEDECIN, [idMedecin, idPatient], function (err) {
             if (err) return next(err);            
-            /* Redirection */
             res.redirect("/");
         });
     });
 }
 
-function ajouterRendezVous(req, res, next){
+exports.ajouterRendezVous = (req, res, next) => {
     /* Singleton connection (see dbOptions) */
     req.getConnection(function (err, connection) {    
         if (err) return next(err);    
@@ -36,7 +36,7 @@ function ajouterRendezVous(req, res, next){
     });    
 }
 
-function afficherPatient(req, res, next) {
+exports.afficherPatient = (req, res, next) => {
     selectById(req, SELECT_PATIENT,function (err, results) {
         if (err) return next(err);
         const patient = results[0];
@@ -52,7 +52,7 @@ function selectById(req, query, callback) {
     })
 }
 
-function afficherRendezVous(req, res, next) {
+exports.afficherRendezVous = (req, res, next) => {
     selectById(req, SELECT_RDV, function(err, results) {
         if (err) return next(err);
         const rendezVous = results[0];
@@ -61,5 +61,24 @@ function afficherRendezVous(req, res, next) {
     });
 }
 
-module.exports = { ajouterPatient, afficherPatient, 
-    ajouterRendezVous, afficherRendezVous };
+exports.retirerPatient = (req, res, next) => {
+    const { connection } = req;
+    const idMedecin = 3; // TODO
+    const idPatient = req.params.id;
+
+    connection.query(REMOVE_PATIENT_MEDECIN, [idMedecin, idPatient], function(err) {
+        if (err) return next(err);            
+        res.redirect("/");
+    });
+}
+
+exports.annulerRendezvous = (req, res, next) => {
+    const { connection } = req;
+    const idRendezVous = req.params.id;
+
+    connection.query(DELETE_RENDEZ_VOUS, [idRendezVous], function(err) {
+        if (err) next(err);
+        res.redirect("/");
+    });
+}
+

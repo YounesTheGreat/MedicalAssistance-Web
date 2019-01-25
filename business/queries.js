@@ -59,5 +59,16 @@ module.exports = {
     FROM rendezvous, patient
     WHERE rendezvous.id_patient = patient.id_patient
     AND rendezvous.id_rendezvous = ?
-  ` 
+  `,
+  
+  REMOVE_PATIENT_MEDECIN : `
+    DELETE FROM liste_medecin_patient
+    WHERE id_medecin = ? AND id_patient = ?   
+  `,
+  
+  DELETE_RENDEZ_VOUS : `
+      DELETE FROM rendezvous
+      WHERE id_rendezvous = ?
+  `
+
 }
