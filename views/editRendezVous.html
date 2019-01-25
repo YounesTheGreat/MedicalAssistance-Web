@@ -1,13 +1,7 @@
-
 {{#if rendezVous }}
 <div class="card border-dark">
     <div class="card-header border-dark ">
-            Informations Rendez Vous
-            <span class="float-right">
-                <a href="/rendezvous/{{rendezVous.id}}/edit" class="btn btn-outline-dark btn-sm">
-                    <i class="far fa-edit"></i>
-                </a>
-            </span>    
+            Modifier Rendez Vous    
     </div>
     <div class="card-body pt-0">
        
@@ -15,19 +9,24 @@
             Détails rendez-vous
         </h1>
         
-        <div class="input-group mb-2">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Date et heure</span>
+        <form action="/rendezvous/{{rendezVous.id}}" method="POST">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Date et heure</span>
+                </div>
+                <input type="date"  class="form-control" value="{{dateFormat rendezVous.dateHeure 'YYYY-MM-DD' }}" />
+                <input type="time" class="form-control" value="{{dateFormat rendezVous.dateHeure 'HH:m' }}" />           
             </div>
-            <label type="text" class="form-control">{{dateFormat rendezVous.dateHeure 'DD/MM/YYYY à HH:m'}}</label>
-        </div>
-
-        <div class="input-group mb-2">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Sujet</span>
+    
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Sujet</span>
+                </div>
+                <input type="text" class="form-control" value="{{ rendezVous.sujet }}" />
             </div>
-            <label type="text" class="form-control">{{ rendezVous.sujet }}</label>
-        </div>
+                                
+            <button class="btn btn-block btn-dark">Modifier</button>
+        </form>
 
         <hr>
        

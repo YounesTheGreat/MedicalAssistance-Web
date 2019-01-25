@@ -3,16 +3,19 @@ const router = express.Router();
 const dashboardMedecin = require("../business/dashboardMedecin");
 const { ajouterPatient, ajouterRendezVous, 
     afficherPatient, afficherRendezVous,
-    retirerPatient, annulerRendezVous } = require("../business/medecinService");
+    retirerPatient, annulerRendezVous,
+    editRendezVous, updateRendezVous } = require("../business/medecinService");
 
 /* GET home page. */
 router.use(databaseConnection)
     .get('/', dashboardMedecin)
     .post('/patients', ajouterPatient)
     .post('/rendezvous', ajouterRendezVous)
+    .post('/rendezvous/:id', updateRendezVous)
     .get('/patients/:id/delete', retirerPatient)
     .get('/patients/:id', afficherPatient)
     .get('/rendezvous/:id/delete', annulerRendezVous)
+    .get('/rendezvous/:id/edit', editRendezVous)
     .get('/rendezvous/:id', afficherRendezVous)
 
 

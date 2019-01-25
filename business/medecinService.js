@@ -1,7 +1,7 @@
 const { INSERT_PATIENT_MEDECIN, SELECT_PATIENT, 
     INSERT_RENDEZVOUS_MEDECIN, SELECT_RDV,
     REMOVE_PATIENT_MEDECIN,
-    DELETE_RENDEZ_VOUS } = require("./queries");
+    DELETE_RENDEZ_VOUS, UPDATE_RENDEZ_VOUS } = require("./queries");
 
 exports.ajouterPatient = (req, res, next) => {
     /* Singleton connection (see dbOptions) */
@@ -83,3 +83,22 @@ exports.annulerRendezVous = (req, res, next) => {
     });
 }
 
+exports.editRendezVous = (req, res, next) => {
+    selectById(req, SELECT_RDV, function(err, results) {
+        if (err) return next(err);
+        const rendezVous = results[0];
+        console.log(rendezVous);
+        res.render("editRendezVous", { rendezVous, layout: "popupLayout" });
+    });
+}
+
+exports.updateRendezVous = (req, res, next) => {
+    const { connection } = req;
+    const idRendezVous = req.params.id;
+    const { sujet, date, heure} = req.body;
+    const dateHeure = date + ' ' + heure;
+
+    connection.query(UPDATE_RENDEZ_VOUS, [sujet, dateHeure,idRendezVous], function(err) {        
+        res.redirect("/rendezvous/"+idRendezVous);
+    });
+}

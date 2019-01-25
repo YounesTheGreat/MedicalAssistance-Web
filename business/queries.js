@@ -69,6 +69,11 @@ module.exports = {
   DELETE_RENDEZ_VOUS : `
       DELETE FROM rendezvous
       WHERE id_rendezvous = ?
-  `
+  `,
 
+  UPDATE_RENDEZ_VOUS : `
+      UPDATE rendezvous
+      SET sujet=? heure=?
+      WHERE id_rendezvous = ?
+  `
 }
