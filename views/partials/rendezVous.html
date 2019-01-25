@@ -26,7 +26,10 @@
                                 {{substring sujet 0 12}}...
                             </td>
                             <td class="btn-group">
-                                <td><button class="btn btn-sm btn-outline-dark"><i class="far fa-eye"></i></button></td>
+                                <td><button class="btn btn-sm btn-outline-dark"
+                                    target="popup" 
+                                    onclick="window.open('rendezVous/{{id}}','popup','width=400,height=400, top=100, location=0 left=100'); return false;">
+                                    <i class="far fa-eye"></i></button></td>
                                 <!-- <button class="btn btn-outline-dark btn-sm"><i class="fas fa-pencil-alt"></i></button>
                                 <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button> -->
                             </td>

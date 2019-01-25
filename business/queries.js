@@ -16,7 +16,7 @@ module.exports = {
   `,
 
   SELECT_RDV_MEDECIN : `
-    SELECT sujet, heure AS dateHeure, nom, prenom 
+    SELECT id_rendezvous AS id, sujet, heure AS dateHeure, nom, prenom 
     FROM rendezvous R, patient P
     WHERE R.id_patient = P.id_patient
     AND R.id_medecin = ?
@@ -40,4 +40,24 @@ module.exports = {
     VALUES (?,?,?,?)
   `,
 
+
+  SELECT_PATIENT : `
+    SELECT id_patient AS id, nom, prenom, 
+      mail AS email, telephone, addresse as adresse,
+      age, groupesanguin AS groupeSanguin,
+      CASE 
+        WHEN sex = 0 THEN "M"
+        ELSE "F"
+      END AS sexe
+    FROM patient
+    WHERE id_patient = ?
+  `,
+
+  SELECT_RDV : `
+    SELECT id_rendezvous AS id, nom, prenom, telephone, mail as email,
+     sujet, heure AS dateHeure 
+    FROM rendezvous, patient
+    WHERE rendezvous.id_patient = patient.id_patient
+    AND rendezvous.id_rendezvous = ?
+  ` 
 }

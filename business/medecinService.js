@@ -1,4 +1,5 @@
-const { INSERT_PATIENT_MEDECIN, INSERT_RENDEZVOUS_MEDECIN} = require("./queries");
+const { INSERT_PATIENT_MEDECIN, SELECT_PATIENT, 
+    INSERT_RENDEZVOUS_MEDECIN, SELECT_RDV } = require("./queries");
 
 function ajouterPatient(req, res, next) {
     /* Singleton connection (see dbOptions) */
@@ -35,4 +36,30 @@ function ajouterRendezVous(req, res, next){
     });    
 }
 
-module.exports = { ajouterPatient, ajouterRendezVous };
+function afficherPatient(req, res, next) {
+    selectById(req, SELECT_PATIENT,function (err, results) {
+        if (err) return next(err);
+        const patient = results[0];
+        res.render("showPatient", { patient, layout: "popupLayout" });
+    });
+}
+
+function selectById(req, query, callback) {
+    req.getConnection(function(err, connection) {
+        if (err) return next(err);
+        const { id } = req.params;
+        connection.query(query, [id], callback);
+    })
+}
+
+function afficherRendezVous(req, res, next) {
+    selectById(req, SELECT_RDV, function(err, results) {
+        if (err) return next(err);
+        const rendezVous = results[0];
+        console.log(rendezVous);
+        res.render("showRendezVous", { rendezVous, layout: "popupLayout" });
+    });
+}
+
+module.exports = { ajouterPatient, afficherPatient, 
+    ajouterRendezVous, afficherRendezVous };

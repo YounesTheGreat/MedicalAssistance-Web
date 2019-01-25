@@ -1,0 +1,62 @@
+
+{{#if rendezVous }}
+<div class="card border-dark">
+    <div class="card-header border-dark ">
+            Informations Rendez Vous
+            <span class="float-right">
+                <button class="btn btn-sm btn-dark">
+                        <i class="far fa-edit"></i>
+                </button>
+            </span>      
+    </div>
+    <div class="card-body pt-0">
+       
+        <h1 class="h4 text-white-50">
+            Détails rendez-vous
+        </h1>
+        
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Date et heure</span>
+            </div>
+            <label type="text" class="form-control">{{dateFormat rendezVous.dateHeure 'DD/MM/YYYY à HH:m'}}</label>
+        </div>
+
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Sujet</span>
+            </div>
+            <label type="text" class="form-control">{{ rendezVous.sujet }}</label>
+        </div>
+
+        <hr>
+       
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Nom du patient</span>
+            </div>
+            <label type="text" class="form-control">{{ rendezVous.nom }}</label>
+        </div>            
+       <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Prénom du patient</span>
+            </div>
+            <label type="text" class="form-control">{{ rendezVous.prenom }}</label>
+        </div> 
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Téléphone du patient</span>
+            </div>
+            <label class="form-control">{{ rendezVous.telephone }}</label>
+        </div>        
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Email du patient</span>
+            </div>
+            <label type="text" class="form-control">{{ rendezVous.email }}</label>
+        </div>
+
+    </div>
+</div>
+
+{{/if }}
