@@ -30,6 +30,11 @@ module.exports = {
     )
   `,
 
+  SELECT_DEMANDES_MEDECIN : `
+    SELECT * FROM demande
+    where id_medecin = ?
+  `,
+
   INSERT_PATIENT_MEDECIN : `
     INSERT INTO liste_medecin_patient(id_medecin, id_patient)
     VALUES (?, ?)

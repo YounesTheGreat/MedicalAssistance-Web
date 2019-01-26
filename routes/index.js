@@ -3,7 +3,8 @@ const router = express.Router();
 const easySession = require("easy-session");
 
 const {  selectInfoMedecin, selectPatientsMedecin,
-    selectRDVsMedecin, selectPatientsNotWithMedecin } = require("../business/dashboardMedecin");
+    selectRDVsMedecin, selectPatientsNotWithMedecin,
+    selectInvitations } = require("../business/dashboardMedecin");
 const { ajouterPatient, ajouterRendezVous, 
     afficherPatient, afficherRendezVous,
     retirerPatient, annulerRendezVous,
@@ -20,6 +21,7 @@ router.get('/', selectInfoMedecin,
     selectPatientsMedecin,
     selectRDVsMedecin,
     selectPatientsNotWithMedecin,
+    selectInvitations,
     (req, res) => res.render("index"));
 
 router.post('/patients', ajouterPatient)
