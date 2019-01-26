@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const easySession = require("easy-session");
+
 const {  selectInfoMedecin, selectPatientsMedecin,
     selectRDVsMedecin, selectPatientsNotWithMedecin } = require("../business/dashboardMedecin");
 const { ajouterPatient, ajouterRendezVous, 
@@ -10,7 +12,8 @@ const { selectMedicamentsCNOPS, selectMedicamentCNOPS,
     selectPrescription, insertMedicamentPrescription } = require("../business/medicamentService");
 
 /* GET home page. */
-router.use(getDatabaseConnection)
+router.use(easySession.isLoggedIn(redirectToLogin))
+    .use(getDatabaseConnection)
     .use(getIdMedecin);
     
 router.get('/', selectInfoMedecin,
@@ -39,6 +42,7 @@ router.post('/prescription',
     (req,res) => res.redirect("back"));
 
 
+
 function getDatabaseConnection(req, res, next) {
     req.getConnection(function(err, connection) {
         if (err) next(err);
@@ -48,8 +52,18 @@ function getDatabaseConnection(req, res, next) {
 }    
 
 function getIdMedecin(req, res, next) {
-    req.idMedecin = req.session && req.session.id ? req.session.id : 3;
-    next();
+    if (req.session.isLoggedIn()) {
+        req.idMedecin = req.session.userId;
+        res.locals.userId = req.session.userId;
+        next();
+    } else {
+        next("Not Logged In ?!");
+    }
+}
+
+function redirectToLogin(req, res, err) {
+    console.log(err);
+    res.redirect("/login?needLogin=1");
 }
 
 module.exports = router;

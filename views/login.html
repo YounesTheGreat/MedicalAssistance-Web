@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <h1 class="h2">Authentification du médecin</h1>
+            <hr>
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label class="font-weight-bold text-black-50">Email du médecin</label>
+                    <input type="email" required name="email"  class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold text-black-50">Mot de passe</label>
+                    <input type="password" required name="password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-dark btn-block">Se Connecter</button>
+            </form>
+
+            <hr>
+            {{#if incorrect}}                
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    Identifiants incorrects
+                </div>
+            {{/if}}
+            {{#if logout}}
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    Vous êtes deconnecté avec succès
+                </div>
+            {{/if}}
+            {{#if needLogin}}
+                <div class="alert alert-dark alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    Il faut d'abord vous connecter
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

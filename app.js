@@ -1,7 +1,9 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
+const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const easySession = require('easy-session');
 const logger = require('morgan');
 
 const indexRouter = require('./routes');
@@ -22,14 +24,19 @@ app.use(logger('dev'))
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
   .use(cookieParser())
+  .use(session({
+      secret: 'Blablabla',
+      resave: false,
+      saveUninitialized: true }))
+  .use(easySession.main(session)) 
   .use(express.static(path.join(__dirname, 'public')));
 
 /** MySQL Connection  */
 app.use(require("./databaseConnection"));
 
 /** Routers */
-app.use('/', indexRouter)
-  .use('/users', usersRouter);
+app.use('/', usersRouter)
+  .use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

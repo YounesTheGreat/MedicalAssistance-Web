@@ -7,12 +7,14 @@
         
         <div class="collapse navbar-collapse pl-5" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto m-0">
+                {{#if userId}}
                 <li class="nav-item">
                     <a href="/" class="nav-link text-white">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a href="/medicaments" class="nav-link text-white">Médicaments</a>
                 </li>
+                {{/if}}
             </ul> 
             
             <ul class="navbar-nav ml-auto">
@@ -24,6 +26,15 @@
                         Design & Réalisation www.youneskasri.com
                     </a>
                 </li>
+
+                {{#if userId}}
+                <li class="nav-item pl-5">
+                    <a href="/logout" class="btn btn-dark">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Deconnexion
+                    </a>
+                </li>
+                {{/if}}
             </ul>             
         </div>
     </nav>

@@ -13,14 +13,10 @@ exports.selectMedicamentsCNOPS = (req, res, next) => {
 function filtrerMedicaments(medicaments, params) {
     if (!params) return;    
     const columns = Object.keys(params);
-
-    console.log("COLUMNS", columns);
-
     return medicaments.filter( medicament => {
         for (let i =0; i<columns.length; i++){
             let A = ""+medicament[columns[i]];
             let B = ""+params[columns[i]];
-            console.log(A, " includes ", B, " ??");            
             if (A.includes(B) === false) {
                 return false;
             }             
@@ -34,7 +30,7 @@ exports.insertMedicamentPrescription = (req, res, next) => {
     const { idPrescription } = res.locals.prescription;
     const { NOM, DOSAGE1, UNITE_DOSAGE1 } = res.locals.medicamentCNOPS;
     const { indications } = req.body;    
-    connection.query(INSERT_MEDICAMENT, [NOM, `Dosage=${DOSAGE1}${UNITE_DOSAGE1}, ${indications}`,idPrescription], function(err){
+    connection.query(INSERT_MEDICAMENT, [NOM, `Dosage=${DOSAGE1}${UNITE_DOSAGE1} - ${indications}`,idPrescription], function(err){
         if (err) return next(err);
         next();
     });     
@@ -42,7 +38,7 @@ exports.insertMedicamentPrescription = (req, res, next) => {
 
 exports.selectPrescription = (req, res, next) => {
     const { connection, idMedecin } = req;
-    const idPatient = req.body["idPatient"] || req.params.id;
+    const idPatient = req.body["idPatient"] || req.params.id;   
     connection.query(SELECT_PRESCRIPTION, [idMedecin, idPatient], function(err, results) {
         if (err) return next(err);
         res.locals.prescription = results[0];

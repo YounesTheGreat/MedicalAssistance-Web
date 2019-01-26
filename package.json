@@ -8,9 +8,11 @@
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "easy-session": "^2.0.2",
     "express": "~4.16.0",
     "express-catch-async": "^1.0.3",
     "express-myconnection": "^1.0.4",
+    "express-session": "^1.15.6",
     "handlebars-cond": "^1.0.3",
     "handlebars-dateformat": "^1.1.1",
     "hbs": "~4.0.1",
