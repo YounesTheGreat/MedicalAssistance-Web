@@ -90,20 +90,25 @@ module.exports = {
   `,
 
   SELECT_PRESCRIPTION : `
-      SELECT id_prescription AS idPrescription
-      FROM prescriptin 
-      WHERE id_medecin = ? AND id_patient = ?
+    SELECT id_prescription AS idPrescription
+    FROM prescription 
+    WHERE id_medecin = ? AND id_patient = ?
   `,
 
   INSERT_PRESCRIPTION : `
-      INSERT INTO prescription VALUES(?,?)
+    INSERT INTO prescription(id_medecin, id_patient) VALUES(?,?)
   `,
 
   INSERT_MEDICAMENT : `
-    INSERT INTO medicament VALUES(?,?,?)  
+    INSERT INTO medicament(nom_medicament, dose,id_prescription, quantite_prise) 
+    VALUES(?,?,?,0)  
   `,   
 
   SELECT_MEDICAMENTS_CNOPS : `
     SELECT * FROM cnops
+  `,
+
+  SELECT_MEDICAMENT_CNOPS : `
+    SELECT * FROM cnops WHERE code = ?
   `
 }

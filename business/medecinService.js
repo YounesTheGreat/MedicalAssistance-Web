@@ -11,6 +11,7 @@ exports.ajouterPatient = (req, res, next) => {
     /* Le Medecin prend en charge le Patient*/
     connection.query(INSERT_PATIENT_MEDECIN, [idMedecin, idPatient], function (err) {
         if (err) return next(err);   
+        console.log("OK 14")
         /* Ajout Prescription Implicit. pr ajout Medicaments */
         connection.query(INSERT_PRESCRIPTION, [idMedecin, idPatient], function(err) {
             if (err) return next(err);

@@ -6,10 +6,11 @@ const { ajouterPatient, ajouterRendezVous,
     afficherPatient, afficherRendezVous,
     retirerPatient, annulerRendezVous,
     editRendezVous, updateRendezVous } = require("../business/medecinService");
-const { selectMedicamentsCNOPS } = require("../business/medicamentService");
+const { selectMedicamentsCNOPS, selectMedicamentCNOPS,
+    selectPrescription, insertMedicamentPrescription } = require("../business/medicamentService");
 
 /* GET home page. */
-router.use(databaseConnection)
+router.use(getDatabaseConnection)
     .use(getIdMedecin);
     
 router.get('/', selectInfoMedecin,
@@ -31,11 +32,14 @@ router.get('/medicaments',
     selectPatientsMedecin, selectMedicamentsCNOPS,
     (req, res) => res.render("medicaments", { ...req.query }));
     
+router.post('/prescription',
+    selectMedicamentCNOPS,
+    selectPrescription,
+    insertMedicamentPrescription,
+    (req,res) => res.redirect("back"));
 
-//router.post('/prescrire', )
 
-
-function databaseConnection(req, res, next) {
+function getDatabaseConnection(req, res, next) {
     req.getConnection(function(err, connection) {
         if (err) next(err);
         req.connection = connection;

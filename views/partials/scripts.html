@@ -10,7 +10,6 @@ crossorigin="anonymous"></script>
 <script>
     $( document ).ready(function() {
         $("button.prescrire").click(prescrireMedicament);
-        $("button#submitPrescription").click(envoyerPrescription);
     });
 
     function prescrireMedicament(e) {
@@ -21,14 +20,6 @@ crossorigin="anonymous"></script>
         $('#newPrescriptionModal').modal('show');        
     }
     
-    function envoyerPrescription(e) {
-        e.preventDefault();       
-        
-        let codeMedicament = $("input[name='codeMedicament']").val();
-        let idPatient = $("input[name='idPatient']").val();
-
-        $.post("/prescription", { codeMedicament, idPatient });
-    }
 </script>
 
 <script>
