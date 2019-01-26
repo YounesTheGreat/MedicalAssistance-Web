@@ -1,12 +1,12 @@
 const { SELECT_MEDICAMENTS_CNOPS,
     SELECT_PRESCRIPTION, INSERT_MEDICAMENT } = require("./queries");
 
-exports.indexMedicaments = (req, res, next) => {
+exports.selectMedicamentsCNOPS = (req, res, next) => {
     const { connection } = req;
     connection.query(SELECT_MEDICAMENTS_CNOPS, [],  function(err, results){
         if (err) return next(err);
-        const medicaments =  filtrerMedicaments(results, req.query );
-        res.render("medicaments", { medicaments, ...req.query });
+        res.locals.medicaments =  filtrerMedicaments(results, req.query );
+        next();
     });
 }
 

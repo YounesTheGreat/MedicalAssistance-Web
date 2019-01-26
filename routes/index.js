@@ -6,7 +6,7 @@ const { ajouterPatient, ajouterRendezVous,
     afficherPatient, afficherRendezVous,
     retirerPatient, annulerRendezVous,
     editRendezVous, updateRendezVous } = require("../business/medecinService");
-const { indexMedicaments } = require("../business/medicamentService");
+const { selectMedicamentsCNOPS } = require("../business/medicamentService");
 
 /* GET home page. */
 router.use(databaseConnection)
@@ -16,7 +16,7 @@ router.get('/', selectInfoMedecin,
     selectPatientsMedecin,
     selectRDVsMedecin,
     selectPatientsNotWithMedecin,
-    (req, res, next) => res.render("index"));
+    (req, res) => res.render("index"));
 
 router.post('/patients', ajouterPatient)
     .post('/rendezvous', ajouterRendezVous)
@@ -25,8 +25,14 @@ router.post('/patients', ajouterPatient)
     .get('/patients/:id', afficherPatient)
     .get('/rendezvous/:id/delete', annulerRendezVous)
     .get('/rendezvous/:id/edit', editRendezVous)
-    .get('/rendezvous/:id', afficherRendezVous)
-    .get('/medicaments', indexMedicaments)
+    .get('/rendezvous/:id', afficherRendezVous);
+
+router.get('/medicaments', 
+    selectPatientsMedecin, selectMedicamentsCNOPS,
+    (req, res) => res.render("medicaments", { ...req.query }));
+    
+
+//router.post('/prescrire', )
 
 
 function databaseConnection(req, res, next) {
