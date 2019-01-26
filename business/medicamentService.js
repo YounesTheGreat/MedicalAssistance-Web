@@ -30,9 +30,8 @@ function filtrerMedicaments(medicaments, params) {
 }
 
 exports.prescrireMedicament = (req, res, next) => {
-    const { connection } = req;
+    const { connection, idMedecin } = req;
     const idPatient = req.params.id;
-    const idMedecin = 3; // TODO session
 
     connection.query(SELECT_PRESCRIPTION, [idMedecin, idPatient], function(err, results){
         const { idPrescription } = results[0];

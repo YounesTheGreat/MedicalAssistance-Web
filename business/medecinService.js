@@ -5,8 +5,7 @@ const { INSERT_PATIENT_MEDECIN, SELECT_PATIENT,
     INSERT_PRESCRIPTION } = require("./queries");
 
 exports.ajouterPatient = (req, res, next) => {
-    const { connection } = req;
-    const idMedecin = 3; // TODO
+    const { connection, idMedecin } = req;
     const { idPatient } = req.body
 
     /* Le Medecin prend en charge le Patient*/
@@ -21,22 +20,18 @@ exports.ajouterPatient = (req, res, next) => {
 }
 
 exports.ajouterRendezVous = (req, res, next) => {
-    /* Singleton connection (see dbOptions) */
-    req.getConnection(function (err, connection) {    
-        if (err) return next(err);    
-        const idMedecin = 3; // TODO
-        const { idPatient, sujet, date, heure } = req.body
+    const { connection, idMedecin } = req;
+    const { idPatient, sujet, date, heure } = req.body
 
-        console.log("Date et heure", date, heure);
-        let dateHeure = date + ' ' + heure;
-        
-        /* RDV entre Medecin et Patient */
-        connection.query(INSERT_RENDEZVOUS_MEDECIN, [idMedecin, idPatient, sujet, dateHeure], function (err) {
-            if (err) return next(err);
-            /* Redirection */
-            res.redirect("/");
-        });
-    });    
+    console.log("Date et heure", date, heure);
+    let dateHeure = date + ' ' + heure;
+    
+    /* RDV entre Medecin et Patient */
+    connection.query(INSERT_RENDEZVOUS_MEDECIN, [idMedecin, idPatient, sujet, dateHeure], function (err) {
+        if (err) return next(err);
+        /* Redirection */
+        res.redirect("/");
+    });
 }
 
 exports.afficherPatient = (req, res, next) => {
@@ -70,8 +65,7 @@ exports.afficherRendezVous = (req, res, next) => {
 }
 
 exports.retirerPatient = (req, res, next) => {
-    const { connection } = req;
-    const idMedecin = 3; // TODO
+    const { connection, idMedecin } = req;
     const idPatient = req.params.id;
 
     connection.query(REMOVE_PATIENT_MEDECIN, [idMedecin, idPatient], function(err) {
