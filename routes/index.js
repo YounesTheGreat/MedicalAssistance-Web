@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const dashboardMedecin = require("../business/dashboardMedecin");
+const {  selectInfoMedecin, selectPatientsMedecin,
+    selectRDVsMedecin, selectPatientsNotWithMedecin } = require("../business/dashboardMedecin");
 const { ajouterPatient, ajouterRendezVous, 
     afficherPatient, afficherRendezVous,
     retirerPatient, annulerRendezVous,
@@ -9,8 +10,15 @@ const { indexMedicaments } = require("../business/medicamentService");
 
 /* GET home page. */
 router.use(databaseConnection)
-    .get('/', dashboardMedecin)
-    .post('/patients', ajouterPatient)
+    .use(getIdMedecin);
+    
+router.get('/', selectInfoMedecin,
+    selectPatientsMedecin,
+    selectRDVsMedecin,
+    selectPatientsNotWithMedecin,
+    (req, res, next) => res.render("index"));
+
+router.post('/patients', ajouterPatient)
     .post('/rendezvous', ajouterRendezVous)
     .post('/rendezvous/:id', updateRendezVous)
     .get('/patients/:id/delete', retirerPatient)
@@ -28,5 +36,10 @@ function databaseConnection(req, res, next) {
         next();
     });
 }    
+
+function getIdMedecin(req, res, next) {
+    req.idMedecin = req.session && req.session.id ? req.session.id : 3;
+    next();
+}
 
 module.exports = router;
