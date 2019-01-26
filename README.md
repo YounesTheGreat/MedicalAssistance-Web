@@ -1,10 +1,7 @@
 TODO :
 
-[X] Remove Patients From Doctor
-
-[X] Show - Delete For RDVs
-
-[] Edit RDV 
+[] Prescrire Medicament -> Patient
+[] Show Patient -> liste médicaments et Dr qui a prescrit
 
 [] ndir Required f date & time input (b/c format(null) => ex )
 

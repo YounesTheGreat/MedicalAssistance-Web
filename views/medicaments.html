@@ -41,21 +41,22 @@
             <tbody>
                 {{#each medicaments }}
                     <tr>
-                        <!-- <td>{{CODE}} </td> -->
                         <td>{{NOM}}</td>
                         <td>{{DCI1}}</td>
                         <td>{{DOSAGE1}}</td>
                         <td>{{UNITE_DOSAGE1}}</td>
                         <td>{{FORME}}</td>
                         <td>{{PRESENTATION}}</td>
-                  <!-- <td>{{PPV}}</td>
-                        <td>{{PH}}</td>
-                        <td>{{PRIX_BR}}</td>
-                        <td>{{PRINCEPS_GENERIQUE}}</td>
-                        <td>{{TAUX_REMBOURSEMENT}}</td> -->
+                        <td>
+                            <button id="{{CODE}}" class="prescrire btn btn-outline-dark btn-sm">
+                                <i class="fas fa-prescription"></i>
+                            </button>
+                        </td>                                        
                     </tr>
                 {{/each}}
             </tbody>
         </table>    
     </div>
 </div>
+
+{{> newPrescriptionModal }}

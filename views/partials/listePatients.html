@@ -27,11 +27,9 @@
                         <td>{{ nom }}</td>
                         <td>{{ prenom }}</td> 
                         <td>
-                            <button id="showPatient{{id}}" class="btn btn-sm btn-outline-dark"
-                            target="popup" 
-                            onclick="PopupCenter('patients/{{id}}','popup', 800,500); return false;">
+                            <a  class="btn btn-sm btn-outline-dark" href="/patients/{{id}}">
                                 <i class="far fa-eye"></i>
-                            </button>
+                            </a>
                             <a href="/patients/{{id}}/delete" class="btn btn-outline-danger btn-sm">
                                 <i class="fas fa-times"></i>
                             </a> 
