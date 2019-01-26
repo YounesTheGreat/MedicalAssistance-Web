@@ -32,9 +32,9 @@ function filtrerMedicaments(medicaments, params) {
 exports.insertMedicamentPrescription = (req, res, next) => {
     const { connection } = req;    
     const { idPrescription } = res.locals.prescription;
-    const { NOM, DOSAGE1 } = res.locals.medicamentCNOPS;
-    //const { indications } = req.body;    
-    connection.query(INSERT_MEDICAMENT, [NOM, DOSAGE1,idPrescription], function(err){
+    const { NOM, DOSAGE1, UNITE_DOSAGE1 } = res.locals.medicamentCNOPS;
+    const { indications } = req.body;    
+    connection.query(INSERT_MEDICAMENT, [NOM, `Dosage=${DOSAGE1}${UNITE_DOSAGE1}, ${indications}`,idPrescription], function(err){
         if (err) return next(err);
         next();
     });     

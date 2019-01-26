@@ -17,11 +17,16 @@
                     </div>
                     <div class="form-group">
                         <label class="">Patient</label>                         
-                        <select name="idPatient" class="form-control">
+                        <select name="idPatient" class="form-control" required>
                             {{#each patients}}
                                 <option value="{{id}}"><span class="text-uppercase">{{nom}}</span> {{prenom}}</option>
                             {{/each}}                        
                         </select>                        
+                    </div>
+                    <div class="form-group">
+                        <label>Indications</label>
+                        <input type="text" name="indications" class="form-control" required  
+                        placeholder="Indications pour prise du médicament.." />
                     </div> 
                     <button  class="btn btn-dark btn-block mt-2">Prescrire</button>
                 </form>
