@@ -25,43 +25,54 @@
 ---
 
 ### Authentification du médecin
+
 ![alt text][screenAuthMedecin]
 
 <br>
 ### Dashboard du médecin
+
 ![alt text][screenDashboardMedecin]
 
 <br>
 ### Prise en charge d'un patient par le médecin
+
 ![alt text][screenPriseEnCharge]
 
 <br>
 ### Afficher un rendez-vous
+
 ![alt text][screenAfficherRDV]
 
 <br>
 ### Organiser un rendez-vous
+
 ![alt text][screenOrganiserRDV]
 
 <br>
 ### Modifier un rendez-vous
+
 ![alt text][screenModifierRDV]
 
 <br>
 ### Liste des médicaments
+
 ![alt text][screenListeMedic]
 
 <br>
 ### Recherche/Filtrage Médicaments
+
 ![alt text][screenRechercherMedic]
 
 <br>
 ### Prescrire un médicament à un patient
+
 ![alt text][screenPrecrireMedic]
 
 <br>
 ### Afficher un patient
+
 ![alt text][screenAfficherPatient]
+
 
 
 [screenAuthMedecin]: _README/screenshots/authentification.png
