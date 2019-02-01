@@ -29,6 +29,7 @@
 ![alt text][screenAuthMedecin]
 
 <br>
+
 ### Dashboard du médecin
 
 ![alt text][screenDashboardMedecin]
