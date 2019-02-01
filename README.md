@@ -13,12 +13,13 @@
 ## Cas d'utilisations de la plateforme
 ![alt text][usecases]
 
+
 ## Architecture technique de la plateforme
 ![alt text][archiTechnique]
 
 [archiSolution]: _README/ArchiSolution.png
 [classes]: _README/ClassDiagramSolution.jpg
-[usecases]: _README/UsecaseMedecin.jpg
+[usecases]: _README/UseCaseMedecin.jpg
 [archiTechnique]: _README/ArchiTechMedecin.png
 
 # Screenshots Partie Médécin
